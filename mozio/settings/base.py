@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'djgeojson',
     'rest_framework_docs',
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,11 +91,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ],
     'PAGE_SIZE': 20,
-    # 'TEST_REQUEST_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.MultiPartRenderer',
-    #     'rest_framework.renderers.JSONRenderer',
-    #     'rest_framework.renderers.TemplateHTMLRenderer'
-    # ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 

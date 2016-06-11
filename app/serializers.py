@@ -50,6 +50,7 @@ class CurrencySerializer(BaseSerializer):
             )
         ]
 
+
 class LanguageSerializer(BaseSerializer):
     class Meta:
         model = Language
@@ -64,7 +65,7 @@ class LanguageSerializer(BaseSerializer):
 class TransportProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = TransportationProvider
-        fields = ("id", 'name', 'email', 'phone', 'language', 'currency', 'date_created', 'date_modified', 'owner')
+        fields = ("id", 'name', 'email', 'phone', 'language', 'currency', 'date_created', 'date_modified')
         validators = [
             validators.UniqueTogetherValidator(
                 queryset=model.objects.all(),
@@ -90,7 +91,7 @@ class TransportProviderSerializer(serializers.ModelSerializer):
 class ServiceAreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServiceArea
-        fields = ('name', 'transport_provider', 'price', 'polygon', 'owner')
+        fields = ('name', 'transport_provider', 'price', 'polygon')
         validators = [
             validators.UniqueTogetherValidator(
                 queryset=model.objects.all(),
@@ -110,9 +111,9 @@ class ServiceAreaSerializer(serializers.ModelSerializer):
         return instance
 
 
-class UserSerializer(serializers.ModelSerializer):
-    transport_providers = serializers.PrimaryKeyRelatedField(many=True, queryset=TransportationProvider.objects.all())
-
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'transport_providers')
+# class UserSerializer(serializers.ModelSerializer):
+    # transport_providers = serializers.PrimaryKeyRelatedField(many=True, queryset=TransportationProvider.objects.all())
+    #
+    # class Meta:
+    #     model = User
+    #     fields = ('id', 'username', 'transport_providers')

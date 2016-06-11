@@ -7,7 +7,7 @@ from django.conf.urls import include, url
 from rest_framework.urlpatterns import format_suffix_patterns
 
 # import application modules
-from .views import api_root, UserDetail, UserList, LanguageList, CurrencyList, TransportProviderList, \
+from .views import api_root, LanguageList, CurrencyList, TransportProviderList, \
     TransportProviderDetail, ServiceAreaList, ServiceAreaDetail
 
 urlpatterns = [
@@ -17,8 +17,8 @@ urlpatterns = [
     url(r'^transport-providers/(?P<pk>[0-9]+)$', TransportProviderDetail.as_view()),
     url(r'^transport-providers/(?P<pk>[0-9]+)/service-areas$', ServiceAreaList.as_view()),
     url(r'^service-areas/(?P<pk>[0-9]+)$', ServiceAreaDetail.as_view()),
-    url(r'^users/$', UserList.as_view()),
-    url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view()),
+    # url(r'^users/$', UserList.as_view()),
+    # url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view()),
     url(r'^', api_root),
 ]
 

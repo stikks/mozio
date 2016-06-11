@@ -9,9 +9,7 @@ from django.contrib.gis.geos import Polygon, Point
 from rest_framework import decorators, response, reverse, generics, status, permissions
 
 # import application
-from .serializers import CurrencySerializer, TransportProviderSerializer, LanguageSerializer, ServiceAreaSerializer, \
-    UserSerializer
-from .permissions import IsOwnerorReadOnly
+from .serializers import CurrencySerializer, TransportProviderSerializer, LanguageSerializer, ServiceAreaSerializer
 
 
 # Create your views here.
@@ -25,14 +23,18 @@ def api_root(request, format=None):
 
 
 class CurrencyList(generics.ListCreateAPIView):
+    """Get the list of currencies from the database."""
+
     serializer_class = CurrencySerializer
     queryset = CurrencySerializer.Meta.model.objects.all()
+
 
     def post(self, request, *args, **kwargs):
         return response.Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class LanguageList(generics.ListCreateAPIView):
+    """Get the list of languages from the database."""
     serializer_class = LanguageSerializer
     queryset = LanguageSerializer.Meta.model.objects.all()
 
@@ -41,9 +43,10 @@ class LanguageList(generics.ListCreateAPIView):
 
 
 class TransportProviderList(generics.ListCreateAPIView):
+    """Get the list of transportation providers from the database."""
     serializer_class = TransportProviderSerializer
     queryset = TransportProviderSerializer.Meta.model.objects.all()
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
 
     def post(self, request, *args, **kwargs):
 
@@ -75,7 +78,7 @@ class TransportProviderList(generics.ListCreateAPIView):
                                                "in setting up your account"}, status=status.HTTP_404_NOT_FOUND)
 
         data["currency"] = currency.pk
-        data["owner"] = self.request.user.pk
+        # data["owner"] = self.request.user.pk
 
         serializer = TransportProviderSerializer(data=data)
 
@@ -86,34 +89,45 @@ class TransportProviderList(generics.ListCreateAPIView):
 
 
 class TransportProviderDetail(generics.RetrieveUpdateDestroyAPIView):
+    """Return the details on a transportation provider."""
     serializer_class = TransportProviderSerializer
     queryset = TransportProviderSerializer.Meta.model.objects.all()
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
 
 
 class ServiceAreaList(generics.ListCreateAPIView):
+    """Get the list of service areas from the database."""
     serializer_class = ServiceAreaSerializer
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
 
     def get(self, request, *args, **kwargs):
+        """ Get a single service area. """
         token = request.query_params.get("token")
         if not token:
-            return response.Response({"detail": "invalid or missing authorization token"}, status=status.HTTP_403_FORBIDDEN)
+            return response.Response({"detail": "invalid or missing authorization token"},
+                                     status=status.HTTP_403_FORBIDDEN)
         areas = ServiceAreaSerializer.Meta.model.objects.filter(transport_provider=kwargs.get('pk')).all()
         serializer = ServiceAreaSerializer(areas, many=True)
-        return response.Response({"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
+        return response.Response(
+            {"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
 
     def post(self, request, *args, **kwargs):
+
+        """
+        Post to see your create a new service area
+
+        """
 
         data = request.data or request.query_params
 
         token = request.query_params.get("token") or request.data.get("token")
         if not token:
-            return response.Response({"detail": "invalid or missing authorization token"}, status=status.HTTP_403_FORBIDDEN)
+            return response.Response({"detail": "invalid or missing authorization token"},
+                                     status=status.HTTP_403_FORBIDDEN)
 
         provider_id = kwargs.pop("pk")
 
@@ -133,7 +147,7 @@ class ServiceAreaList(generics.ListCreateAPIView):
         line = Polygon(polygon_data)
 
         data["polygon"] = line
-        data["owner"] = self.request.user.pk
+        # data["owner"] = self.request.user.pk
 
         serializer = ServiceAreaSerializer(data=data)
 
@@ -146,7 +160,7 @@ class ServiceAreaList(generics.ListCreateAPIView):
 class ServiceAreaQuery(generics.RetrieveAPIView):
     serializer_class = ServiceAreaSerializer
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
 
     def post(self, request, *args, **kwargs):
 
@@ -163,20 +177,21 @@ class ServiceAreaQuery(generics.RetrieveAPIView):
         polygon = Point(latitude, longitude)
         areas = ServiceAreaSerializer.Meta.model.objects.filter(polygon__contains=polygon).all()
         serializer = ServiceAreaSerializer(areas, many=True)
-        return response.Response({"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
+        return response.Response(
+            {"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
 
 
 class ServiceAreaDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ServiceAreaSerializer
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
 
 
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+# class UserList(generics.ListAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#
+#
+# class UserDetail(generics.RetrieveAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer

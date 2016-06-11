@@ -38,7 +38,7 @@ class TransportationProvider(AbstractClass):
     language = models.ForeignKey(Language)
     currency = models.ForeignKey(Currency)
     authorization_token = models.TextField(blank=False)
-    owner = models.ForeignKey('auth.User', related_name='transport_providers')
+    # owner = models.ForeignKey('auth.User', related_name='transport_providers')
 
     @classmethod
     def generate_token(self, email):
@@ -52,4 +52,4 @@ class ServiceArea(AbstractClass):
     price = models.FloatField(blank=False)
     polygon = PolygonField(blank=False)
     transport_provider = models.ForeignKey(TransportationProvider)
-    owner = models.ForeignKey('auth.User')
+    # owner = models.ForeignKey('auth.User')

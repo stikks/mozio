@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9f1c75d-44ee-4495-a5dc-4785848b688b" name="Default" comment="" />
+    <list default="true" id="d9f1c75d-44ee-4495-a5dc-4785848b688b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mozio/settings/base.py" afterPath="$PROJECT_DIR$/mozio/settings/base.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/serializers.py" afterPath="$PROJECT_DIR$/app/serializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mozio/urls.py" afterPath="$PROJECT_DIR$/mozio/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="mozio.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -25,95 +33,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="186" column="70" selection-start-line="186" selection-start-column="70" selection-end-line="186" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/tests.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+              <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
               <folding>
-                <element signature="e#29#61#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mozio/settings/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="local.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mozio/settings/local.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="56" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="production.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mozio/settings/production.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.17464425">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dj_database_url.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/dj_database_url.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/urls.py">
+        <entry file="file://$PROJECT_DIR$/mozio/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+              <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Procfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Procfile">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.518518">
+              <caret line="113" column="20" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="20" />
+              <folding>
+                <element signature="e#587#1173#0" expanded="false" />
+                <element signature="e#1222#1439#0" expanded="false" />
+                <element signature="e#1488#1705#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/rest_framework/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+              <caret line="924" column="49" selection-start-line="924" selection-start-column="49" selection-end-line="924" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -149,24 +129,24 @@
         <option value="$PROJECT_DIR$/app/test_languageSerializer.py" />
         <option value="$PROJECT_DIR$/mozio/setup/countries.json" />
         <option value="$PROJECT_DIR$/mozio/setup/languages.json" />
-        <option value="$PROJECT_DIR$/mozio/urls.py" />
         <option value="$PROJECT_DIR$/.ebextensions/django.config" />
         <option value="$PROJECT_DIR$/.ebextensions/django_01.config" />
         <option value="$PROJECT_DIR$/mozio/utils.py" />
         <option value="$PROJECT_DIR$/app/permissions.py" />
-        <option value="$PROJECT_DIR$/app/urls.py" />
-        <option value="$PROJECT_DIR$/app/serializers.py" />
-        <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/mozio/settings.py" />
         <option value="$PROJECT_DIR$/app/tests.py" />
         <option value="$PROJECT_DIR$/mozio/settings/local.py" />
-        <option value="$PROJECT_DIR$/mozio/settings/base.py" />
         <option value="$PROJECT_DIR$/manage.py" />
         <option value="$PROJECT_DIR$/deployment.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/mozio/wsgi.py" />
         <option value="$PROJECT_DIR$/mozio/settings/production.py" />
+        <option value="$PROJECT_DIR$/mozio/settings/base.py" />
+        <option value="$PROJECT_DIR$/mozio/urls.py" />
+        <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/app/serializers.py" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/urls.py" />
       </list>
     </option>
   </component>
@@ -297,7 +277,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="wsgi&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/wsgi.py&#10;bas&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/settings/base.py&#10;base&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/settings/base.py&#10;tests&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/tests.py&#10;test&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/venv/local/lib/python2.7/site-packages/rest_framework/test.py&#10;per&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/permissions.py&#10;ser&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/serializers.py&#10;ie&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/views.py&#10;model&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/models.py" />
+    <property name="SearchEverywhereHistoryKey" value="mode&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/models.py&#10;views&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/views.py&#10;ser&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/serializers.py&#10;urls&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/urls.py&#10;base&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/settings/base.py&#10;wsgi&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/wsgi.py&#10;bas&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/mozio/settings/base.py&#10;tests&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/tests.py&#10;test&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/venv/local/lib/python2.7/site-packages/rest_framework/test.py&#10;per&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/permissions.py&#10;ie&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/views.py&#10;model&#9;FILE&#9;file:///home/stikks/Documents/projects/mozio/app/models.py" />
   </component>
   <component name="RunManager" selected="Python.views">
     <configuration default="false" name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -612,7 +592,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -696,14 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/rest_framework/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="197" column="8" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.ebextensions/.elasticbeanstalk/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -716,14 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="5" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mozio/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13583441">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -832,24 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="74" selection-start-line="92" selection-start-column="74" selection-end-line="92" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/rest_framework/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.9780078">
@@ -924,22 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -956,14 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mozio/settings/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/dj_database_url.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -972,10 +896,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mozio/settings/local.py">
+    <entry file="file://$PROJECT_DIR$/mozio/settings/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="56" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="56" />
+          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/rest_framework/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="924" column="49" selection-start-line="924" selection-start-column="49" selection-end-line="924" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/rest_framework/fields.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37904269">
+          <caret line="1666" column="8" selection-start-line="1666" selection-start-column="8" selection-end-line="1666" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -987,6 +927,60 @@
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mozio/settings/local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11642949">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.518518">
+          <caret line="113" column="20" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="20" />
+          <folding>
+            <element signature="e#587#1173#0" expanded="false" />
+            <element signature="e#1222#1439#0" expanded="false" />
+            <element signature="e#1488#1705#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="186" column="70" selection-start-line="186" selection-start-column="70" selection-end-line="186" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mozio/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17464425">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
