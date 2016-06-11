@@ -1,5 +1,9 @@
-__author__ = 'stikks'
-from .local import *
-
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(engine='django.contrib.gis.db.backends.postgis')}
+
+from .base import *
+
+DEBUG = False
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['*']
+
+DATABASES = {'default': dj_database_url.config()}
