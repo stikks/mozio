@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9f1c75d-44ee-4495-a5dc-4785848b688b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mozio/wsgi.py" afterPath="$PROJECT_DIR$/mozio/wsgi.py" />
-    </list>
+    <list default="true" id="d9f1c75d-44ee-4495-a5dc-4785848b688b" name="Default" comment="" />
     <ignored path="mozio.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
