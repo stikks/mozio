@@ -4,6 +4,7 @@ blessed==1.9.5
 botocore==1.4.27
 cement==2.8.2
 colorama==0.3.7
+Django==1.9.7
 django-filter==0.13.0
 djangorestframework==3.3.3
 docker-py==1.7.2
