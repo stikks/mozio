@@ -50,5 +50,5 @@ class ServiceArea(AbstractClass):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False)
     price = models.FloatField(blank=False)
-    geojson_data = PolygonField(blank=False)
+    polygon = PolygonField(blank=False)
     transport_provider = models.ForeignKey(TransportationProvider)

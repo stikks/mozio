@@ -11,3 +11,13 @@ class IsOwnerorReadOnly(permissions.BasePermission):
             return True
 
         return obj.owner == request.user
+
+
+class IsProviderOwnerorReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+
+        print 'view', view
+        print 'request', request
+        print 'obj', obj
+
+        return False

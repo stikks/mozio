@@ -11,6 +11,7 @@ from rest_framework import status
 
 # Create your tests here.
 from .models import TransportationProvider, ServiceArea, Currency, Language
+import views
 
 factory = APIRequestFactory()
 
@@ -87,22 +88,92 @@ class TransportProviderTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    @staticmethod
+    def create_object():
+        user = User.objects.create(username="admin", password="admin")
+        language = Language.objects.create(name="Igbo", code="IGB")
+        currency = Currency.objects.create(name="Naira", code="NGN", symbol="Nigeria Naira")
+        view = views.TranportProviderList.as_view()
+        factory = APIRequestFactory()
+        data = {'name': 'Marvel Studios', 'email': 'marvel@studios.com', 'phone': '0987654321', 'language': 'igbo',
+                'currency': 'naira'}
+        request = factory.post('/ap1/v1/transport-providers', data=data)
+        force_authenticate(request, user=user)
+        response = view(request)
+
+        return response
+
     def test_create_transport_provider_with_authentication(self):
         """
         Ensure we can create a new account object.
         """
-        user = User.objects.filter()
-        url = reverse('transport-providers')
-        data = {'name': 'Marvel Studios', 'email': 'marvel@studios.com', 'phone': '0987654321', 'language': 'igbo',
-                'currency': 'pound'}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        response = self.create_object()
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_retrieve_providers(self):
         """
         Ensure we can update a currency object.
         """
-        currencies = TransportationProvider.objects.all()
-        url = reverse('transport-providers')
-        response = self.client.get(url, format='json')
+        user = User.objects.create(username="admin", password="admin")
+        view = views.TranportProviderList.as_view()
+        factory = APIRequestFactory()
+        request = factory.get('/ap1/v1/transport-providers')
+        force_authenticate(request, user=user)
+        response = view(request)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class ServiceAreaTests(APITestCase):
+    # def test_create_service_area_without_authentication(self):
+    #     """
+    #     Ensure we can create a new account object.
+    #     """
+    #     user = User.objects.filter(username="admin").first()
+    #     TransportProviderTests.create_object()
+    #     view = views.TranportProviderList.as_view()
+    #     factory = APIRequestFactory()
+    #     data = {'name': 'Yaba', 'price': '1000', 'geo_json_data': ((0, 0), (0, 1), (1, 1), (0, 0))}
+    #     request = factory.post('/ap1/v1/transport-providers/1/service-areas', data=data)
+    #     # force_authenticate(request, user=user)
+    #     response = view(request)
+    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    #
+    # def test_create_service_area_with_authentication(self):
+    #     """
+    #     Ensure we can create a new account object.
+    #     """
+    #     user = User.objects.create(username="admin", password="admin")
+    #     language = Language.objects.create(name="Igbo", code="IGB")
+    #     currency = Currency.objects.create(name="Naira", code="NGN", symbol="Nigeria Naira")
+    #     view = views.TranportProviderList.as_view()
+    #     factory = APIRequestFactory()
+    #     data = {'name': 'Marvel Studios', 'email': 'marvel@studios.com', 'phone': '0987654321', 'language': 'igbo',
+    #             'currency': 'naira'}
+    #     request = factory.post('/ap1/v1/transport-providers', data=data)
+    #     force_authenticate(request, user=user)
+    #     response = view(request)
+    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_retrieve_providers(self):
+        """
+        Ensure we can update a currency object.
+        """
+        user = User.objects.create(username="admin", password="admin")
+        language = Language.objects.create(name="Igbo", code="IGB")
+        currency = Currency.objects.create(name="Naira", code="NGN", symbol="Nigeria Naira")
+        data = {'name': 'Marvel Studios', 'email': 'marvel@studios.com', 'phone': '0987654321', 'language': language,
+                'currency': currency, "owner": user}
+        provider = TransportationProvider.objects.create(**data)
+
+        # client = APIClient()
+        # client.credentials(HTTP_AUTHORIZATION='Token ' + provider.authorization_token)
+        # client.force_authenticate(user=None)
+
+        # response = client.get('/ap1/v1/transport-providers/1/service-areas', format="json")
+        factory = APIRequestFactory()
+        view = views.ServiceAreaList.as_view()
+        request = factory.get('/ap1/v1/transport-providers/1/service-areas')
+        force_authenticate(request, user=None, token=provider.authorization_token)
+
+        response = view(request)
         self.assertEqual(response.status_code, status.HTTP_200_OK)

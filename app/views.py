@@ -1,5 +1,10 @@
+import json
+
 # import django core modules
 from django.contrib.auth.models import User
+from django.db.models import Q
+from django.contrib.gis.geos import Polygon, LinearRing, LineString, Point
+from geojson import Polygon as poly
 
 # import third party/django extensions modules
 from rest_framework import decorators, response, reverse, generics, status, permissions
@@ -7,7 +12,7 @@ from rest_framework import decorators, response, reverse, generics, status, perm
 # import application
 from .serializers import CurrencySerializer, TransportProviderSerializer, LanguageSerializer, ServiceAreaSerializer, \
     UserSerializer
-from .permissions import IsOwnerorReadOnly
+from .permissions import IsOwnerorReadOnly, IsProviderOwnerorReadOnly
 
 # Create your views here.
 @decorators.api_view(["GET"])
@@ -47,9 +52,6 @@ class TranportProviderList(generics.ListCreateAPIView):
 
         language_name = data.get("language")
 
-        print "data", data
-        print "language_name", language_name
-
         if not language_name:
             return response.Response({"error": "language parameter missing"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -66,7 +68,8 @@ class TranportProviderList(generics.ListCreateAPIView):
         if not currency_name:
             return response.Response({"error": "currency parameter missing"}, status=status.HTTP_400_BAD_REQUEST)
 
-        currency = CurrencySerializer.Meta.model.objects.filter(name__contains=currency_name).first()
+        currency = CurrencySerializer.Meta.model.objects.filter(Q(name__contains=currency_name.lower()) |
+                                                                Q(name__iexact=currency_name.lower())).first()
 
         if not currency:
             return response.Response({"error": "currency not found. please contact an administrator to help "
@@ -97,7 +100,9 @@ class ServiceAreaList(generics.ListCreateAPIView):
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
 
     def get(self, request, *args, **kwargs):
-        print 'kwargs', kwargs
+        token = request.query_params.get("token")
+        if not token:
+            return response.Response({"detail": "invalid or missing authorization token"}, status=status.HTTP_403_FORBIDDEN)
         areas = ServiceAreaSerializer.Meta.model.objects.filter(transport_provider=kwargs.get('pk')).all()
         serializer = ServiceAreaSerializer(areas, many=True)
         return response.Response({"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
@@ -105,11 +110,44 @@ class ServiceAreaList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+    def post(self, request, *args, **kwargs):
+
+        data = request.data or request.query_params
+
+        token = request.query_params.get("token") or request.data.get("token")
+        if not token:
+            return response.Response({"detail": "invalid or missing authorization token"}, status=status.HTTP_403_FORBIDDEN)
+
+        provider_id = kwargs.pop("pk")
+
+        provider = TransportProviderSerializer.Meta.model.objects.filter(pk=provider_id).first()
+
+        if not provider:
+            return response.Response({"error": "Transport Provider not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        data["transport_provider"] = provider.pk
+
+        polygon_info = data.get('geojson_data')
+
+        if not polygon_info:
+            return response.Response({"error": "Polygon info missing"}, status=status.HTTP_404_NOT_FOUND)
+
+        polygon_data = json.loads(polygon_info)
+        line = Polygon(polygon_data)
+
+        data["polygon"] = line
+
+        serializer = ServiceAreaSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ServiceAreaDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ServiceAreaSerializer
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
 
 
 class UserList(generics.ListAPIView):
