@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'app',
     'rest_framework',
     'djgeojson',
+    'rest_framework_docs',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,7 +97,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
     ],
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    # 'TEST_REQUEST_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.MultiPartRenderer',
+    #     'rest_framework.renderers.JSONRenderer',
+    #     'rest_framework.renderers.TemplateHTMLRenderer'
+    # ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
+
+REST_FRAMEWORK_DOCS = {
+    'HIDE_DOCS': os.environ.get('HIDE_DRFDOCS', False)
 }
 
 LANGUAGES = [
