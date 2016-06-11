@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'djgeojson',
     'rest_framework_docs',
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
