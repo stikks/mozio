@@ -3,8 +3,7 @@ import json
 # import django core modules
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.contrib.gis.geos import Polygon, LinearRing, LineString, Point
-from geojson import Polygon as poly
+from django.contrib.gis.geos import Polygon, Point
 
 # import third party/django extensions modules
 from rest_framework import decorators, response, reverse, generics, status, permissions
@@ -142,6 +141,29 @@ class ServiceAreaList(generics.ListCreateAPIView):
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ServiceAreaQuery(generics.RetrieveAPIView):
+    serializer_class = ServiceAreaSerializer
+    queryset = ServiceAreaSerializer.Meta.model.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
+
+    def post(self, request, *args, **kwargs):
+
+        longitude = request.data.get('longitude')
+
+        if not longitude:
+            return response.Response({"error": "longitude missing"}, status=status.HTTP_400_BAD_REQUEST)
+
+        latitude = request.data.get('latitude')
+
+        if not latitude:
+            return response.Response({"error": "latitude missing"}, status=status.HTTP_400_BAD_REQUEST)
+
+        polygon = Point(latitude, longitude)
+        areas = ServiceAreaSerializer.Meta.model.objects.filter(polygon__contains=polygon).all()
+        serializer = ServiceAreaSerializer(areas, many=True)
+        return response.Response({"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
 
 
 class ServiceAreaDetail(generics.RetrieveUpdateDestroyAPIView):
