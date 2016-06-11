@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^languages$', LanguageList.as_view(), name='languages'),
     url(r'^transport-providers$', TransportProviderList.as_view(), name='transport-providers'),
     url(r'^transport-providers/(?P<pk>[0-9]+)$', TransportProviderDetail.as_view()),
-    url(r'^service-areas$', ServiceAreaList.as_view(), name='service-areas'),
+    url(r'^transport-providers/(?P<pk>[0-9]+)/service-areas$', ServiceAreaList.as_view()),
     url(r'^service-areas/(?P<pk>[0-9]+)$', ServiceAreaDetail.as_view()),
     url(r'^users/$', UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view()),

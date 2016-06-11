@@ -78,8 +78,8 @@ else:
       'default': {
           'ENGINE': 'django.contrib.gis.db.backends.postgis',
           'NAME': "mozio",
-          'USERNAME': 'stikks',
-          'PASSWORD': 'stikks',
+          'USERNAME': 'postgres',
+          'PASSWORD': 'postgres',
           'HOST': '',
           'PORT': ''
       }

@@ -90,7 +90,7 @@ class TransportProviderSerializer(serializers.ModelSerializer):
 class ServiceAreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServiceArea
-        fields = ('name', 'transport_provider', 'price', 'polygon')
+        fields = ('name', 'transport_provider', 'price', 'polygon', 'owner')
         validators = [
             validators.UniqueTogetherValidator(
                 queryset=model.objects.all(),

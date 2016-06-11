@@ -52,3 +52,4 @@ class ServiceArea(AbstractClass):
     price = models.FloatField(blank=False)
     polygon = PolygonField(blank=False)
     transport_provider = models.ForeignKey(TransportationProvider)
+    owner = models.ForeignKey('auth.User')

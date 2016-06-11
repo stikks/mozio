@@ -20,7 +20,6 @@ from .permissions import IsOwnerorReadOnly
 def api_root(request, format=None):
     return response.Response({
         'transport-providers': reverse.reverse('transport-providers', request=request, format=format),
-        'service-areas': reverse.reverse('service-areas', request=request, format=format),
         'currencies': reverse.reverse('currencies', request=request, format=format),
         'languages': reverse.reverse('languages', request=request, format=format)
     })
@@ -99,6 +98,7 @@ class TransportProviderDetail(generics.RetrieveUpdateDestroyAPIView):
 class ServiceAreaList(generics.ListCreateAPIView):
     serializer_class = ServiceAreaSerializer
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
 
     def get(self, request, *args, **kwargs):
         token = request.query_params.get("token")
@@ -134,6 +134,7 @@ class ServiceAreaList(generics.ListCreateAPIView):
         line = Polygon(polygon_data)
 
         data["polygon"] = line
+        data["owner"] = self.request.user.pk
 
         serializer = ServiceAreaSerializer(data=data)
 
@@ -146,6 +147,7 @@ class ServiceAreaList(generics.ListCreateAPIView):
 class ServiceAreaDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ServiceAreaSerializer
     queryset = ServiceAreaSerializer.Meta.model.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerorReadOnly,)
 
 
 class UserList(generics.ListAPIView):
