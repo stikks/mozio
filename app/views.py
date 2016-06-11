@@ -12,7 +12,8 @@ from rest_framework import decorators, response, reverse, generics, status, perm
 # import application
 from .serializers import CurrencySerializer, TransportProviderSerializer, LanguageSerializer, ServiceAreaSerializer, \
     UserSerializer
-from .permissions import IsOwnerorReadOnly, IsProviderOwnerorReadOnly
+from .permissions import IsOwnerorReadOnly
+
 
 # Create your views here.
 @decorators.api_view(["GET"])
@@ -41,7 +42,7 @@ class LanguageList(generics.ListCreateAPIView):
         return response.Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
-class TranportProviderList(generics.ListCreateAPIView):
+class TransportProviderList(generics.ListCreateAPIView):
     serializer_class = TransportProviderSerializer
     queryset = TransportProviderSerializer.Meta.model.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerorReadOnly,)
@@ -106,9 +107,6 @@ class ServiceAreaList(generics.ListCreateAPIView):
         areas = ServiceAreaSerializer.Meta.model.objects.filter(transport_provider=kwargs.get('pk')).all()
         serializer = ServiceAreaSerializer(areas, many=True)
         return response.Response({"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
 
     def post(self, request, *args, **kwargs):
 
