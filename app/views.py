@@ -10,7 +10,7 @@ from rest_framework import decorators, response, reverse, generics, status, view
 
 # import application
 from .serializers import CurrencySerializer, TransportProviderSerializer, LanguageSerializer, ServiceAreaSerializer, \
-    QuerySerializer, ServiceListSerializer
+    QuerySerializer, ServiceListSerializer, NewServiceAreaSerializer
 from .models import ServiceArea, TransportationProvider
 
 
@@ -171,37 +171,44 @@ class NewServiceArea(generics.GenericAPIView):
     """
      Creates a new service area for a particular transport provider.
      """
-    serializer_class = ServiceAreaSerializer
+    serializer_class = NewServiceAreaSerializer
     queryset = ServiceArea.objects.all()
 
     def post(self, request, *args, **kwargs):
 
-        data = request.data.copy()
-
-        token = data.get("authorization_token")
-
-        if not token:
-            return response.Response({"error": "Transport Provider authorization Token Missing"}, status=status.HTTP_404_NOT_FOUND)
+        token = request.data.get("authorization_token")
 
         provider = TransportProviderSerializer.Meta.model.objects.filter(authorization_token__iexact=token).first()
 
         if not provider:
             return response.Response({"error": "Transport Provider not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        data["transport_provider"] = provider.pk
+        try:
+            polygon = request.data.get("polygon")
 
-        polygon = data.pop("polygon")
-        polygon_data = json.loads(polygon)
+            print polygon
 
-        line = Polygon(polygon_data)
-        data["polygon"] = line
+            polygon_data = json.loads(polygon)
 
-        serializer = ServiceAreaSerializer(data=data)
+            line = Polygon(polygon_data)
 
-        if serializer.is_valid():
-            serializer.save()
-            return response.Response(serializer.data, status=status.HTTP_200_OK)
-        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            data = {
+                "name": request.data.get("name"),
+                "price": request.data.get("price"),
+                "polygon": line,
+                "transport_provider": provider.pk
+            }
+
+            serializer = ServiceAreaSerializer(data=data)
+
+            if serializer.is_valid():
+                serializer.save()
+                response_data = serializer.data.copy()
+                response_data["transport_provider"] = provider.name
+                return response.Response(response_data, status=status.HTTP_200_OK)
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return response.Response({"error": "Invalid input polygon parameters"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ServiceAreaDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -236,20 +243,12 @@ class QueryView(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
 
-        data = request.data.copy()
-
-        latitude = data.get('latitude')
-
-        if not latitude:
-            return response.Response({"error": "latitude missing"}, status=status.HTTP_404_NOT_FOUND)
-
-        longitude = data.get('longitude')
-
-        if not longitude:
-            return response.Response({"error": "longitude missing"}, status=status.HTTP_404_NOT_FOUND)
-
         try:
-            point = Point(int(latitude), int(longitude))
+            latitude = request.data.get("latitude")
+
+            longitude = request.data.get("longitude")
+
+            point = Point(float(latitude), float(longitude))
 
             areas = ServiceArea.objects.filter(polygon__contains=point).all()
 
@@ -258,5 +257,5 @@ class QueryView(generics.GenericAPIView):
             return response.Response(
                 {"count": len(serializer.data), "next": None, "previous": None, "results": serializer.data})
         except:
-            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return response.Response({"error": "Invalid input parameters"}, status=status.HTTP_400_BAD_REQUEST)
 

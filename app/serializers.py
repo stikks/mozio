@@ -101,12 +101,21 @@ class ServiceAreaSerializer(serializers.ModelSerializer):
 
 
 class QuerySerializer(serializers.Serializer):
-    latitude = serializers.IntegerField(required=True)
-    longitude = serializers.IntegerField(required=True)
+    latitude = serializers.FloatField(required=True)
+    longitude = serializers.FloatField(required=True)
+
+
+class NewServiceAreaSerializer(serializers.Serializer):
+    """ Serializer class for creating new service areas """
+    name = serializers.CharField(required=True, help_text="service area name")
+    polygon = serializers.CharField(required=True, help_text="jsonified polygon object")
+    authorization_token = serializers.CharField(required=True, help_text="Transport provider authorization token")
+    price = serializers.FloatField(required=True, help_text="service area price")
+    transport_provider = serializers.CharField(read_only=True)
 
 
 class ServiceListSerializer(serializers.Serializer):
-    authorization_token = serializers.CharField(required=True)
+    authorization_token = serializers.CharField(required=True, help_text="Transport provider authorization token")
 
 
 # class UserSerializer(serializers.ModelSerializer):
